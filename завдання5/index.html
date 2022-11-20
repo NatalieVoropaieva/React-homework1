@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src= "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const rootNode = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootNode);
+
+    const users = [
+        {
+            name: "John",
+            age: 25,
+            gender: "Male",
+            balance: "0$",
+            picture: "https://avatars3.githubusercontent.com/u/9384699?s=400&v=4"
+        },
+        {
+            name: "Helen",
+            age: 21,
+            gender: "Female",
+            balance: "100$",
+            picture: 'https://as2.ftcdn.net/v2/jpg/02/79/66/93/1000_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg'
+        },
+        {
+            name: "Bob",
+            age: 39,
+            gender: "Male",
+            balance: "234$",
+            picture: "https://static.vecteezy.com/system/resources/previews/004/476/164/original/young-man-avatar-character-icon-free-vector.jpg"
+        }
+    ];
+
+    const UserCard = (props) => {
+        const user = props.user;
+        const {name, gender, picture, balance, age} = user;
+        return (
+            <div className="card shadow">
+                <img className="card-img-top"
+                     src={picture}
+                     alt="User image" />
+                <div className="card-body">
+                    <h5 className="card-title">{name}</h5>
+                    <p className="card-text info">
+                        <span>Age: {age}</span>
+                        <span>Gender: {gender}</span>
+                        <span>Balance: {balance}</span>
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    root.render(
+        <div className="row">
+            {users.map((user, index) => {
+                return <div key={index} className="col-4"><UserCard user={user}/></div>
+            })}
+        </div>
+    );
+
+</script>
+</body>
+</html>
